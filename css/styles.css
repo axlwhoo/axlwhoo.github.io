@@ -1,0 +1,197 @@
+/* Background pattern */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #E1E1E1;
+    background-image: repeating-linear-gradient(
+        45deg,
+        #E1E1E1,
+        #E1E1E1 10px,
+        #D8D8D8 10px,
+        #D8D8D8 20px
+    );
+    margin: 0;
+    font-size: 12px;
+}
+
+/* Header Section */
+.top-header {
+    padding-top: 10px;
+}
+
+.header-container {
+    width: 1000px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
+    border: 1px solid #A7A7A7;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.search-bar-container {
+    display: flex;
+    gap: 5px;
+}
+
+.image-container {
+    position: relative; /* Referencia para el badge */
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: 1px solid #A7A7A7;
+    padding: 4px;
+}
+
+/* Layout Container (The gap between boxes) */
+.main-layout-container {
+    width: 1000px;
+    margin: 10px auto; /* Space between header and content */
+    display: flex;
+    gap: 10px; /* Space between sidebar and content */
+    align-items: flex-start;
+}
+
+/* Independent Sidebar Box */
+/* Quitamos el fondo y borde al contenedor padre */
+.sidebar {
+    width: 1000px;
+    background: transparent; /* Ahora el fondo es el rayado */
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio de 10px entre cada bloque */
+}
+
+/* Estilo común para los 3 bloques */
+.sidebar-block {
+    background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
+    border: 1px solid #A7A7A7;
+    padding: 10px;
+}
+
+/* Ajustes específicos para los links azules */
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.links-section a {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Ajuste de títulos internos */
+.sidebar-block h3 {
+    margin-top: 0;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Independent Content Box */
+.content {
+    flex-grow: 1;
+    background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
+    border: 1px solid #A7A7A7;
+    min-height: 600px;
+}
+
+.content-header {
+    background: linear-gradient(to bottom, #4D4D4D, #000000);
+    color: white;
+    padding: 2px 12px;
+}
+
+.content-header h2 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+/* Product Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px;
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    text-align: left;
+    width: 100%; /* Se adaptará al grid */
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block; /* Quita el espacio extra debajo de la imagen */
+}
+
+/* Legend & Badges */
+.legend-title {
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 3px;
+    margin-top: 20px;
+}
+
+.badge {
+    position: absolute;
+    bottom: 1px; /* Justo en el borde inferior de la imagen */
+    left: 1px;   /* Justo en el borde izquierdo */
+    z-index: 10;
+    
+    font-weight: bold;
+    font-size: 10px;
+    padding: 1px 3px;
+    border: 1px solid #000;
+}
+
+/* Contenedor de la tarjeta con tamaño uniforme */
+.card {
+    position: relative;
+    text-align: left;
+    width: 100%; /* Se adaptará al grid */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forzar que todas las imágenes midan lo mismo */
+.image-container {
+    position: relative;
+    width: 180px;  /* Ajusta según prefieras */
+    height: 180px; /* Ajusta según prefieras */
+    border: 1px solid #E1E1E1;
+    margin-bottom: 5px;
+    overflow: hidden; /* Corta lo que sobresalga */
+    background-color: white;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajusta la imagen sin estirarla */
+    display: block;
+}
+
+/* Asegurar que el área de texto tenga altura mínima para no mover los precios */
+.item-name {
+    color: #0000EE;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+}
+
+.new { background-color: #FFD700; color: #000; }
+.outstock { background-color: #FF0000; color: white; }
+.instock { background-color: #32CD32; color: white; }
+
+.item-name { color: #0000EE; font-weight: bold; text-decoration: none; display: block; }
+.price-robux { color: #008000; font-weight: bold; margin-top: 3px; }
+.blue-link { color: #0000EE; text-decoration: none; }
+ul { list-style: none; padding: 0; }
