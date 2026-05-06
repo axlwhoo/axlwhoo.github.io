@@ -525,19 +525,26 @@ ul { list-style: none; padding: 0; }
 
 @media (max-width: 768px) {
     /* 1. ELIMINAR LOS ANCHOS FIJOS Y HOMOLOGAR CONTENEDORES */
-    /* Forzamos que el contenedor de detalle y sus partes internas ignoren los 1000px */
+    /* Añadimos explícitamente .header-container y .search-bar-container */
     .header-container,
+    .search-bar-container,
     .main-layout-container, 
     #product-detail-view,
     #dynamic-back-btn,
     #dynamic-detail-header,
     .product-detail-container {
         width: 100% !important;
-        max-width: 100% !important; /* Esto anula el max-width: 1000px del JS */
+        max-width: 100% !important;
         box-sizing: border-box !important;
         padding: 10px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+    }
+
+    /* Ajuste específico para que el buscador interno no se achique */
+    .search-bar {
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     /* 2. ESCONDER REDES SOCIALES Y CARRITO */
@@ -617,7 +624,7 @@ ul { list-style: none; padding: 0; }
         aspect-ratio: 1 / 1 !important;
     }
 
-    /* 6. VISTA DE DETALLE - CORRECCIÓN DE ANCHO TOTAL */
+    /* 6. VISTA DE DETALLE */
     #product-detail-view .product-detail-container {
         flex-direction: column !important; 
         padding: 15px !important;
@@ -643,6 +650,7 @@ ul { list-style: none; padding: 0; }
 
     .top-header {
         margin-bottom: 5px !important;
+        width: 100% !important;
     }
 
     /* Ajuste de imagen de producto */
