@@ -44,8 +44,8 @@ function openProductDetail(productId) {
                 <h1 style="font-size: 28px; font-weight: bold; color: #000; margin: 0 0 15px 0;">${item.name}</h1>
                 
                 <div style="font-size: 13px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span style="font-weight: bold; color: #000;">Precio: MXN$: ${item.price}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: bold; color: #008000;">MXN$: ${item.price}</span>
                         <button onclick="addToCart(${item.id}); renderDetailCart();" 
                                 style="background: linear-gradient(to bottom, #7df37d, 4px, #088409); border: none; border-radius: 4px; color: white; padding: 8px 20px; font-weight: bold; cursor: pointer;">
                             Agregar al carrito
