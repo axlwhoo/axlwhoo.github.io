@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4kStore.com</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/icon.ico">
 </head>
 <body>
     <div class="top-header">
         <div class="header-container">
             <div class="search-bar-container">
-                <input type="text" placeholder="Search" class="search-input">
+                <input type="text" placeholder="Buscar" class="search-input">
                 <select class="category-select">
-                    <option>All Categories</option>
+                    <option>Todas las categorias</option>
                 </select>
-                <button class="search-btn">Search</button>
-                <button class="reset-btn">Reset</button>
+                <button class="search-btn">Buscar</button>
+                <button class="reset-btn">Restablecer</button>
             </div>
         </div>
     </div>
@@ -23,41 +24,67 @@
     <div class="main-layout-container">
         <aside class="sidebar">
             <div class="sidebar-block links-section">
-                <a href="#" class="blue-link">Instagram</a>
-                <a href="#" class="blue-link">Facebook</a>
-                <a href="#" class="blue-link">Tiktok</a>
+                <a href="https://www.instagram.com/axl.moog/" target="_blank" class="blue-link">Instagram</a>
+                <a href="https://www.facebook.com/axel.castillo.496893" target="_blank" class="blue-link">Facebook</a>
+                <a href="https://www.tiktok.com/@axl.whoo" target="_blank" class="blue-link">Tiktok</a>
             </div>
 
             <div class="sidebar-block">
-                <h3>Browse</h3>
+                <h3>Navegar</h3>
                 <ul class="browse-list">
-                    <li class="active">Featured</li>
-                    <li>Top Favorites</li>
-                    <li>Best Selling</li>
-                    <li>Recently Updated</li>
-                    <li>For Sale</li>
+                    <li class="active" data-filter="all">Todos los productos</li>
+                    <li data-filter="favorites">Top favoritos</li>
+                    <li data-filter="sales">Más vendidos</li>
+                    <li data-filter="new">Productos nuevos</li>
                 </ul>
             </div>
 
-            <div class="sidebar-block legend">
-                <h3 class="legend-title">Legend</h3>
-                <div class="legend-item">
-                    <p><strong>Builders Club Only</strong> items are those which can only be purchased by users with a membership.</p>
-                </div>
-                <div class="legend-item">
-                    <p><strong>Limited Items</strong> are those which were once sold by Roblox and will not be sold again.</p>
+            <div class="sidebar-block cart-section">
+                <h3>Carrito</h3>
+                <ul id="cart-list" class="cart-list"></ul>
+                <div id="cart-empty-msg" style="font-size: 11px; color: #666;">Tu carrito está vacío.</div>
+    
+                <div id="cart-actions" style="display: none; gap: 5px; margin-top: 10px;">
+                    <button id="clear-cart" title="Vaciar Carrito">X</button>
+                    <button id="pay-btn">PAGAR</button>
                 </div>
             </div>
         </aside>
 
-        <main class="content">
+        <main>
             <div class="content-header">
-                <h2>All products</h2>
+                <h2>Todos los productos</h2>
             </div>
-            <div id="product-grid" class="grid">
-                </div>
+        <main>
+        <main class="content">
+            <div id="results-count-text" class="results-count"></div>
+
+            <div id="product-grid" class="grid"></div>
+
+            <div class="category-info">
+                <h3 class="category-title">¡Atención!</h3>
+                <p class="category-subtitle">
+                    El propósito de esta página web es únicamente educativo y de práctica. Este sitio ha sido creado con el fin de aprender y experimentar con el desarrollo web, por lo que los productos, precios y funciones mostradas no son reales ni están disponibles para compra.
+                </p>
+                <p class="category-subtitle">
+                Este sitio no está afiliado, asociado ni tiene ninguna relación con Roblox ni con sus productos o servicios.
+                </p>
+            </div>
         </main>
+
+        <div id="pagination-controls" class="pagination"></div>
+
+        <div id="product-detail-view" style="display: none;" class="content">
     </div>
+            
+    </div>
+
+    <footer class="footer-payments">
+        <img src="assets/icons/google-pay.png">
+        <img src="assets/icons/oxxo-pay.png">
+        <img src="assets/icons/paypal.png">
+        <img src="assets/icons/mercado-pago.png">
+    </footer>
 
     <script src="js/script.js"></script>
 </body>

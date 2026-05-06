@@ -1,19 +1,24 @@
-/* Background pattern */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, sans-serif;
     background-color: #E1E1E1;
     background-image: repeating-linear-gradient(
         45deg,
-        #E1E1E1,
-        #E1E1E1 10px,
-        #D8D8D8 10px,
-        #D8D8D8 20px
+        #E1E1E1 0px,
+        #E1E1E1 20px,
+        #D8D8D8 20px,
+        #D8D8D8 40px,
+        #E1E1E1 40px,
+        #E1E1E1 60px,
+        #D8D8D8 60px,
+        #D8D8D8 80px
     );
     margin: 0;
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
 }
 
-/* Header Section */
 .top-header {
     padding-top: 10px;
 }
@@ -25,6 +30,7 @@ body {
     border: 1px solid #A7A7A7;
     padding: 8px;
     box-sizing: border-box;
+    box-shadow: inset 0 2px 0 0 #FFF;
 }
 
 .search-bar-container {
@@ -32,45 +38,64 @@ body {
     gap: 5px;
 }
 
+.product-detail-container {
+    gap: 0px;
+}
+
+/* Asegura que el detalle ocupe el ancho correcto cuando no hay sidebar */
+#product-detail-view {
+    width: 1000px;
+    margin: 0 auto; /* Cambiamos el 20px auto por 0 auto */
+    display: none;
+    border: none;
+    background: transparent;
+}
+
+/* Estilo para el botón de cerrar en la barra negra */
+.content-header h2 button:hover {
+    filter: brightness(1.2);
+}
+
 .image-container {
-    position: relative; /* Referencia para el badge */
+    position: relative;
     width: 100%;
 }
 
 .search-input {
     flex-grow: 1;
     border: 1px solid #A7A7A7;
+    border-radius: 2px;
     padding: 4px;
 }
 
-/* Layout Container (The gap between boxes) */
 .main-layout-container {
     width: 1000px;
-    margin: 10px auto; /* Space between header and content */
+    margin: 10px auto;
     display: flex;
-    gap: 10px; /* Space between sidebar and content */
+    gap: 10px;
     align-items: flex-start;
+
+    /* AÑADE ESTO: */
+    flex: 1; /* Esto empuja al footer hacia abajo si hay poco contenido */
 }
 
-/* Independent Sidebar Box */
-/* Quitamos el fondo y borde al contenedor padre */
 .sidebar {
-    width: 1000px;
-    background: transparent; /* Ahora el fondo es el rayado */
+    min-width: 170px;
+    max-width: 170px;
+    background: transparent;
     border: none;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio de 10px entre cada bloque */
+    gap: 10px;
 }
 
-/* Estilo común para los 3 bloques */
 .sidebar-block {
     background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
     border: 1px solid #A7A7A7;
+    box-shadow: inset 0 2px 0 0 #FFF;
     padding: 10px;
 }
 
-/* Ajustes específicos para los links azules */
 .links-section {
     display: flex;
     flex-direction: column;
@@ -82,45 +107,208 @@ body {
     font-weight: bold;
 }
 
-/* Ajuste de títulos internos */
 .sidebar-block h3 {
     margin-top: 0;
     font-size: 14px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #A7A7A7;
     padding-bottom: 5px;
 }
 
-/* Independent Content Box */
 .content {
     flex-grow: 1;
     background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
     border: 1px solid #A7A7A7;
+    box-shadow: inset 0 2px 0 0 #FFF;
     min-height: 600px;
 }
 
 .content-header {
-    background: linear-gradient(to bottom, #4D4D4D, #000000);
+    border-top: #A7A7A7 1px solid;
+    background: linear-gradient(to bottom, #4b4b4b, #282828);
     color: white;
-    padding: 2px 12px;
+    padding: 5px 0px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    
+    clip-path: polygon(
+    calc(100% - 18px) 0%, 
+    100% 45%, 
+    100% 100%, 
+    0% 100%, 
+    0% 0%
+    );
+    
+    width: 100%;
+    margin-bottom: 0px;
+    border-top-left-radius: 6px;
 }
 
 .content-header h2 {
     font-size: 18px;
-    margin: 5px 0;
+    margin: 5px 10px;
 }
 
-/* Product Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales */
     padding: 15px;
     gap: 20px;
+    min-height: 850px; /* Altura mínima para que el diseño no salte al cambiar de página */
+    justify-items: center;
+}
+
+/* .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 10px;
+} */
+
+/* Contenedor de paginación (fuera de la tabla) */
+.pagination {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end; /* Lo mueve a la derecha */
+    width: 100%;
+}
+
+.pagination-wrapper {
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+}
+
+/* Estilo de los links azules */
+.nav-link {
+    color: #0000EE;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Cuando no se puede clickear (primera o última página) */
+.nav-link.disabled {
+    color: #808080;
+    cursor: default;
+    text-decoration: none;
+}
+
+.category-description {
+    padding: 10px 15px 0 15px;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    color: #333; /* Color de texto estándar */
+    line-height: 1.4; /* Espaciado entre líneas para mejor lectura */
+    text-align: center;
+}
+
+/* Contenedor principal del texto */
+.category-info {
+    padding: 20px 15px;
+    margin-top: 20px;
+    position: relative; /* CRUCIAL para la línea */
+    text-align: center;
+}
+
+.category-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Esto hace que no llegue a los extremos */
+    height: 1px;
+    background-color: #E5E5E5;
+}
+
+.category-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.category-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin: 0 auto;
+    line-height: 1.4;
+    max-width: 85%;
+    display: inline-block;
+}
+
+/* Ajuste para el texto de resultados (Mostrando 1-16...) */
+.results-count {
+    padding: 5px 15px 10px 15px;
+    font-size: 11px;
+    color: #666;
+    font-family: Verdana, sans-serif;
+}
+
+.page-info-text {
+    color: #333;
+    margin: 0 10px;
+    font-weight: normal;
+}
+
+.page-btn {
+    border: 1px solid #A7A7A7;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease; /* Suaviza el cambio de tamaño */
+    font-family: Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botones numéricos normales */
+.num-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+/* El botón activo (Más grande) */
+.num-btn.active {
+    background: #4D4D4D;
+    color: white;
+    width: 45px;   /* Aumentamos el tamaño */
+    height: 45px;  /* Aumentamos el tamaño */
+    font-size: 18px; /* Texto más grande */
+    font-weight: bold;
+    border-color: #000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Estilo para las flechas */
+.arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #f0f0f0;
+}
+
+.arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #d8d8d8;
 }
 
 .card {
     position: relative;
     text-align: left;
-    width: 100%; /* Se adaptará al grid */
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -129,10 +317,9 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    display: block; /* Quita el espacio extra debajo de la imagen */
+    display: block;
 }
 
-/* Legend & Badges */
 .legend-title {
     border-bottom: 1px solid #CCC;
     padding-bottom: 3px;
@@ -141,44 +328,43 @@ body {
 
 .badge {
     position: absolute;
-    bottom: 1px; /* Justo en el borde inferior de la imagen */
-    left: 1px;   /* Justo en el borde izquierdo */
+    min-width: 50px;
+    bottom: 0px;
+    left: 0px;
     z-index: 10;
-    
-    font-weight: bold;
+    font-style: italic;
     font-size: 10px;
-    padding: 1px 3px;
-    border: 1px solid #000;
+    padding: 2px 14px 2px 6px;
+    text-align: left;
+    text-transform: uppercase;
+    clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
 }
 
-/* Contenedor de la tarjeta con tamaño uniforme */
 .card {
     position: relative;
     text-align: left;
-    width: 100%; /* Se adaptará al grid */
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Forzar que todas las imágenes midan lo mismo */
 .image-container {
     position: relative;
-    width: 180px;  /* Ajusta según prefieras */
-    height: 180px; /* Ajusta según prefieras */
+    width: 180px;
+    height: 180px;
     border: 1px solid #E1E1E1;
     margin-bottom: 5px;
-    overflow: hidden; /* Corta lo que sobresalga */
+    overflow: hidden;
     background-color: white;
 }
 
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ajusta la imagen sin estirarla */
+    object-fit: contain;
     display: block;
 }
 
-/* Asegurar que el área de texto tenga altura mínima para no mover los precios */
 .item-name {
     color: #0000EE;
     font-weight: bold;
@@ -187,11 +373,167 @@ body {
     overflow: hidden;
 }
 
-.new { background-color: #FFD700; color: #000; }
-.outstock { background-color: #FF0000; color: white; }
-.instock { background-color: #32CD32; color: white; }
+.browse-list li {
+    cursor: pointer;
+}
+
+.browse-list li:hover {
+    text-decoration: underline; /* Opcional: añade un subrayado al pasar el mouse */
+    color: #0000EE; /* Cambia a azul para reforzar que es un link */
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.cart-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #E1E1E1;
+    color: #333;
+    font-family: Verdana, sans-serif;
+}
+
+.cart-section h3 {
+    border-bottom: 1px solid #A7A7A7;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* #clear-cart {
+    background: linear-gradient(to bottom, #7df37d, 4px, #088409); 
+    border-radius: 6px;
+    color: white;              
+    border: 1px solid #A7A7A7;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+} */
+
+/* Botones del Carrito en el Sidebar */
+#cart-actions {
+    display: flex; /* Alinea los botones en fila */
+    align-items: center;
+}
+
+#clear-cart {
+    width: 25px;       /* Lo hace cuadrado */
+    height: 25px;
+    background: linear-gradient(to bottom, #CE0A0A 4px, #860000); 
+    color: white;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;    /* Evita que se deforme */
+    border-radius: 6px;
+}
+
+#pay-btn {
+    flex-grow: 1;      /* Hace que sea rectangular y ocupe el resto del espacio */
+    height: 25px;
+    background: linear-gradient(to bottom, #007bff 4px, #0056b3); 
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+    border-radius: 6px;
+}
+
+/* Botón Verde de los Productos (con imagen) */
+.add-to-cart-btn {
+    background: linear-gradient(to bottom, #7df37d, 4px, #088409); 
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    border: none;
+}
+
+.add-to-cart-btn img {
+    width: 20px; /* Ajusta el tamaño de tu imagen aquí */
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(359deg) brightness(104%) contrast(102%);
+}
+
+#clear-cart:hover {
+    background-color: #860000; /* Color más oscuro al pasar el mouse */
+}
+
+/* Cambiamos el cursor para que el usuario sepa que puede hacer clic en el nombre */
+.item-name {
+    cursor: pointer;
+}
+.item-name:hover {
+    text-decoration: underline;
+}
+
+.item-stats {
+    font-size: 12px;
+    color: black;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    color: black;
+    transition: transform 0.1s;
+}
+
+.fav-btn.active {
+    color: #FFD700; /* Dorado para favorito activo */
+}
+
+.fav-btn:active {
+    transform: scale(1.2);
+}
+
+.new { 
+    background: linear-gradient(to bottom, #f3e304 4px, #b5a800); 
+    font-weight: bold;
+    color: black; 
+}
+
+.outstock { 
+    background: linear-gradient(to bottom, #CE0A0A 4px, #860000); 
+    color: white; 
+}
+
+.instock { 
+    background: linear-gradient(to bottom, #7df37d, 4px, #088409); 
+    color: white; 
+}
 
 .item-name { color: #0000EE; font-weight: bold; text-decoration: none; display: block; }
 .price-robux { color: #008000; font-weight: bold; margin-top: 3px; }
 .blue-link { color: #0000EE; text-decoration: none; }
 ul { list-style: none; padding: 0; }
+
+.footer-payments {
+    width: 100%;
+    margin: 20px auto 0px auto; /* Centrado con margen pequeño abajo */
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
+    border: 1px solid #A7A7A7;
+    box-sizing: border-box;
+}
+
+.footer-payments img {
+    max-width: 40px;
+    height: 25px;
+    filter: grayscale(20%); /* Opcional: para un look más integrado */
+    background-color: white;
+    border: 1px solid #A7A7A7;
+    border-radius: 5px;
+}
