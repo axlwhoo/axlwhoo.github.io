@@ -522,3 +522,159 @@ ul { list-style: none; padding: 0; }
     border: 1px solid #A7A7A7;
     border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+    /* 1. ELIMINAR LOS ANCHOS FIJOS Y HOMOLOGAR CONTENEDORES */
+    /* Forzamos que el contenedor de detalle y sus partes internas ignoren los 1000px */
+    .header-container,
+    .main-layout-container, 
+    #product-detail-view,
+    #dynamic-back-btn,
+    #dynamic-detail-header,
+    .product-detail-container {
+        width: 100% !important;
+        max-width: 100% !important; /* Esto anula el max-width: 1000px del JS */
+        box-sizing: border-box !important;
+        padding: 10px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* 2. ESCONDER REDES SOCIALES Y CARRITO */
+    .sidebar .sidebar-block:nth-child(1),
+    .sidebar .sidebar-block:nth-child(3) {
+        display: none !important;
+    }
+
+    /* 3. CONFIGURACIÓN DE SIDEBAR Y TÍTULO "NAVEGAR" */
+    .main-layout-container {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 15px !important;
+        padding: 0 !important;
+    }
+    
+    .sidebar .sidebar-block:nth-child(2) {
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    
+    .sidebar .sidebar-block:nth-child(2) h3 {
+        display: block !important; 
+        text-align: center !important;
+        font-size: 16px !important;
+        color: #333 !important;
+        margin: 10px !important;
+        font-weight: bold !important;
+    }
+
+    /* BOTONES DE CATEGORÍA */
+    .sidebar .links-section ul, .browse-list {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        padding: 0 !important;
+    }
+
+    .sidebar .links-section li {
+        background: #fff !important;
+        border: 1px solid #A7A7A7 !important;
+        padding: 8px 12px !important;
+        border-radius: 4px !important;
+        font-size: 12px !important;
+        list-style: none !important;
+    }
+
+    /* 4. GRID 2x4 */
+    .content {
+        box-shadow: none;
+        width: 100% !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    .grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        padding: 0 !important;
+    }
+
+    /* 5. IMÁGENES RESPONSIVAS */
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .image-container {
+        width: 100% !important; 
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+    }
+
+    /* 6. VISTA DE DETALLE - CORRECCIÓN DE ANCHO TOTAL */
+    #product-detail-view .product-detail-container {
+        flex-direction: column !important; 
+        padding: 15px !important;
+        gap: 20px !important;
+        border-top: none !important;
+        margin-top: 0 !important;
+    }
+
+    #dynamic-back-btn {
+        margin-bottom: 0 !important;
+        padding-left: 10px !important;
+    }
+
+    #dynamic-detail-header {
+        margin-bottom: 0 !important;
+        border-bottom: none !important; 
+    }
+
+    #dynamic-detail-header h2 {
+        font-size: 18px !important; 
+        padding: 10px !important;
+    }
+
+    .top-header {
+        margin-bottom: 5px !important;
+    }
+
+    /* Ajuste de imagen de producto */
+    #product-detail-view .detail-image {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        border: none !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    #product-detail-view .detail-image img {
+        width: 100% !important; 
+        height: auto !important;
+        max-width: 350px; 
+    }
+
+    #product-detail-view .detail-info {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Bloque de precio y descripción */
+    #product-detail-view .detail-info div[style*="background: #F2F2F2"] {
+        max-width: 100% !important; 
+        box-sizing: border-box !important;
+        width: 100% !important;
+    }
+
+    #product-detail-view div[style*="border: 1px solid #BDBCBC"] {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}

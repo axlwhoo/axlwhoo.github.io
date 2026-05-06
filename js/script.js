@@ -5,6 +5,7 @@ function openProductDetail(productId) {
     const item = items.find(i => i.id === productId);
     if (!item) return;
 
+    // --- LÓGICA DE NAVEGACIÓN ---
     const catalogView = document.querySelector('.content');
     const mainContentHeader = document.querySelector('main > .content-header'); 
     const pagination = document.getElementById('pagination-controls');
@@ -12,6 +13,7 @@ function openProductDetail(productId) {
     const sidebar = document.querySelector('.sidebar');
     const detailView = document.getElementById('product-detail-view');
 
+    // Ocultamos elementos
     if (mainContentHeader) mainContentHeader.style.display = 'none';
     catalogView.style.display = 'none';
     if(pagination) pagination.style.display = 'none';
@@ -19,82 +21,54 @@ function openProductDetail(productId) {
     sidebar.style.display = 'none';
 
     detailView.style.display = 'block';
-    detailView.innerHTML = '';
-
-    const combinedHTML = `
-        <div id="dynamic-back-btn" style="width: 1000px; margin: 0 auto 5px auto; text-align: left;">
+    
+    // IMPORTANTE: Limpiamos y generamos TODO dentro de detailView
+    detailView.innerHTML = `
+        <div id="dynamic-back-btn" style="width: 100%; max-width: 1000px; margin: 0 auto 5px auto; text-align: left;">
             <span onclick="closeProductDetail()" style="color: #0000EE; cursor: pointer; font-size: 13px; font-family: Verdana, sans-serif;">
                 &lt;&lt; Regresar
             </span>
         </div>
-        <div class="content-header" id="dynamic-detail-header" style="margin-top: 0;">
-            <h2>${item.name}</h2>
+
+        <div class="content-header" id="dynamic-detail-header" style="width: 100%; max-width: 1000px; margin: 0 auto;">
+            <h2 style="margin: 0; padding: 10px;">${item.name}</h2>
         </div>
-    `;
-    detailView.insertAdjacentHTML('beforebegin', combinedHTML);
 
-    const salesCount = item.sales || 0;
-    const favCount = item.favorites || 0;
-    const dateAdded = item.date || "05/05/2024";
-
-    detailView.innerHTML = `
-        <div class="product-detail-container" style="display: flex; padding: 30px; gap: 40px; background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF); box-shadow: inset 0 2px 0 0 #FFF; border: 1px solid #A7A7A7; margin-bottom: 40px; font-family: Verdana, sans-serif;">
+        <div class="product-detail-container" style="display: flex; padding: 30px; gap: 40px; background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF); border: 1px solid #A7A7A7; box-shadow: inset 0 2px 0 0 #FFF; border-top: none; margin: 0 auto 40px auto; width: 100%; max-width: 1000px; box-sizing: border-box; font-family: Verdana, sans-serif;">
             
-            <div class="detail-image" style="border: 1px solid #E1E1E1; padding: 15px; background: white;">
+            <div class="detail-image" style="border: 1px solid #A7A7A7; padding: 15px; background: white;">
                 <img src="${item.img}" style="width: 420px; height: 420px; object-fit: contain;">
             </div>
             
             <div class="detail-info" style="flex-grow: 1; text-align: left;">
+                <h1 style="font-size: 28px; font-weight: bold; color: #000; margin: 0 0 15px 0;">${item.name}</h1>
                 
                 <div style="font-size: 13px;">
-                    <div style="font-size: 13px; color: #666;">
-                        ${item.name}
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0px;">
-                        <span style="font-weight: bold; color: #0000EE;">MXN$: ${item.price}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span style="font-weight: bold; color: #000;">Precio: MXN$: ${item.price}</span>
                         <button onclick="addToCart(${item.id}); renderDetailCart();" 
                                 style="background: linear-gradient(to bottom, #7df37d, 4px, #088409); border: none; border-radius: 4px; color: white; padding: 8px 20px; font-weight: bold; cursor: pointer;">
                             Agregar al carrito
                         </button>
                     </div>
 
-                    <div style="margin-bottom: 5px;">
-                        <span style="color: #666;">Creador: </span>
-                        <span style="color: #0000EE;">${item.creator || '4kStore'}</span>
-                    </div>
+                    <div style="margin-bottom: 5px;"><span style="color: #666;">Creador: </span><span style="color: #0000EE;">${item.creator || '4kStore'}</span></div>
+                    <div style="margin-bottom: 5px;"><span style="color: #666;">Agregado en: </span><span style="color: #000;">${item.date || '05/05/2024'}</span></div>
+                    <div style="margin-bottom: 5px;"><span style="color: #666;">Favoritos: </span><span style="color: #000;">${item.favorites || 0}</span></div>
+                    <div style="margin-bottom: 15px;"><span style="color: #666;">Vendidos: </span><span style="color: #000;">${item.sales || 0}</span></div>
 
-                    <div style="margin-bottom: 5px;">
-                        <span style="color: #666;">Agregado en: </span>
-                        <span style="color: #000;">${item.date}</span>
-                    </div>
-
-                    <div style="margin-bottom: 5px;">
-                        <span style="color: #666;">Favoritos: </span>
-                        <span style="color: #000;">${item.favorites}</span>
-                    </div>
-
-                    <div style="margin-bottom: 10px;">
-                        <span style="color: #666;">Vendidos: </span>
-                        <span style="color: #000;">${item.sales}</span>
-                    </div>
-
-                    <div style="color: #000; font-weight: bold; margin-bottom: 10px;">
-                        Descripción:
-                    </div>
-
-                    <div style="border: 1px solid #A7A7A7; background: transparent; padding: 12px; min-height: 15px; color: #000; line-height: 1.4;">
+                    <div style="color: #000; font-weight: bold; margin-bottom: 5px;">Descripción:</div>
+                    <div style="border: 1px solid #BDBCBC; background: transparent; padding: 12px; min-height: 100px; color: #000; line-height: 1.4;">
                         ${item.description || 'Sin descripción disponible.'}
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <div class="content-header">
+        <div class="content-header" style="width: 100%; max-width: 1000px; margin: 0 auto;">
             <h2>Tu Carrito</h2>
         </div>
-        <div id="detail-cart-items" style="padding: 20px; background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF); box-shadow: inset 0 2px 0 0 #FFF; border: 1px solid #A7A7A7; margin-bottom: 40px;"></div>
+        <div id="detail-cart-items" style="max-width: 1000px; margin: 0 auto 40px auto; padding: 20px; background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF); box-shadow: inset 0 2px 0 0 #FFF; border: 1px solid #A7A7A7;"></div>
     `;
 
     renderDetailCart();
