@@ -1,11 +1,10 @@
-const ITEMS_PER_PAGE = 16; // Configuración 4x4
+const ITEMS_PER_PAGE = 16;
 let currentPage = 1;
 
 function openProductDetail(productId) {
     const item = items.find(i => i.id === productId);
     if (!item) return;
 
-    // --- LÓGICA DE NAVEGACIÓN ---
     const catalogView = document.querySelector('.content');
     const mainContentHeader = document.querySelector('main > .content-header'); 
     const pagination = document.getElementById('pagination-controls');
@@ -34,7 +33,6 @@ function openProductDetail(productId) {
     `;
     detailView.insertAdjacentHTML('beforebegin', combinedHTML);
 
-    // Valores dinámicos (usando lo que hay en tu script.js o valores por defecto)
     const salesCount = item.sales || 0;
     const favCount = item.favorites || 0;
     const dateAdded = item.date || "05/05/2024";
@@ -105,14 +103,12 @@ function openProductDetail(productId) {
 function closeProductDetail() {
     window.history.pushState({}, '4kStore', 'index.html');
 
-    // Borrar elementos dinámicos
     const dynamicBackBtn = document.getElementById('dynamic-back-btn');
     if (dynamicBackBtn) dynamicBackBtn.remove();
     
     const dynamicHeader = document.getElementById('dynamic-detail-header');
     if (dynamicHeader) dynamicHeader.remove();
 
-    // Restaurar interfaz (Respetando tu .sidebar en flex)
     document.querySelector('.top-header').style.display = 'block';
     document.querySelector('.sidebar').style.display = 'flex';
     document.querySelector('.main-layout-container').style.display = 'flex';
@@ -138,13 +134,11 @@ function renderDetailCart() {
 
     let html = `
         <style>
-            /* Eliminar flechas en Chrome, Safari, Edge y Opera */
             input.no-spinners::-webkit-outer-spin-button,
             input.no-spinners::-webkit-inner-spin-button {
                 -webkit-appearance: none;
                 margin: 0;
             }
-            /* Eliminar flechas en Firefox */
             input.no-spinners {
                 -moz-appearance: textfield;
             }
@@ -242,11 +236,8 @@ function renderCatalog() {
     const paginationControls = document.getElementById('pagination-controls');
     if(!grid) return;
 
-    // 1. Filtrado previo (reutilizando tu lógica de categorías si la tienes)
     let filteredItems = [...items]; 
-    // Si tienes filtros activos (Top favoritos, etc), aplícalos aquí antes de segmentar.
 
-    // 2. Calcular índices de paginación
     const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -254,7 +245,6 @@ function renderCatalog() {
 
     grid.innerHTML = '';
 
-    // 3. Renderizar items de la página actual
     paginatedItems.forEach(item => {
         const isFavorited = getItemStatus(item.id);
         const salesCount = getSales(item.id);
@@ -286,7 +276,6 @@ function renderCatalog() {
         grid.appendChild(card);
     });
 
-    // 4. Renderizar botones de paginación
     renderPaginationButtons(totalPages, paginationControls);
 }
 
@@ -294,11 +283,9 @@ function renderPaginationButtons(totalPages, container) {
     container.innerHTML = '';
     if (totalPages <= 1) return;
 
-    // Contenedor interno para alinear a la derecha
     const wrapper = document.createElement('div');
     wrapper.className = 'pagination-wrapper';
 
-    // 1. Mostrar "<< Anterior" SOLO si NO estás en la página 1
     if (currentPage > 1) {
         const prevLink = document.createElement('span');
         prevLink.innerHTML = '<< Anterior';
@@ -311,13 +298,11 @@ function renderPaginationButtons(totalPages, container) {
         wrapper.appendChild(prevLink);
     }
 
-    // 2. Texto central "Página X de Y" (siempre visible)
     const info = document.createElement('span');
     info.className = 'page-info-text';
     info.innerText = ` Página ${currentPage} de ${totalPages} `;
     wrapper.appendChild(info);
 
-    // 3. Mostrar "Siguiente >>" SOLO si NO estás en la última página
     if (currentPage < totalPages) {
         const nextLink = document.createElement('span');
         nextLink.innerHTML = 'Siguiente >>';
@@ -375,7 +360,7 @@ function saveAndRenderCart() {
     localStorage.setItem('cart_items', JSON.stringify(cart));
     const cartList = document.getElementById('cart-list');
     const emptyMsg = document.getElementById('cart-empty-msg');
-    const cartActions = document.getElementById('cart-actions'); // El nuevo contenedor
+    const cartActions = document.getElementById('cart-actions');
     
     cartList.innerHTML = '';
     
@@ -384,7 +369,7 @@ function saveAndRenderCart() {
         cartActions.style.display = 'none';
     } else {
         emptyMsg.style.display = 'none';
-        cartActions.style.display = 'flex'; // Muestra el grupo de botones
+        cartActions.style.display = 'flex';
         
         cart.forEach(item => {
             const li = document.createElement('li');
@@ -395,7 +380,6 @@ function saveAndRenderCart() {
     }
 }
 
-// Estado global del filtro actual
 let currentFilter = 'all';
 
 function getItemStatus(itemId) {
@@ -423,7 +407,6 @@ function renderCatalog() {
     const paginationControls = document.getElementById('pagination-controls');
     if (!grid) return;
 
-    // 1. Filtrar primero según la categoría seleccionada
     let filteredItems = [...items];
     if (currentFilter === 'favorites') {
         filteredItems.sort((a, b) => (getItemStatus(b.id) ? 1 : 0) - (getItemStatus(a.id) ? 1 : 0));
@@ -433,10 +416,8 @@ function renderCatalog() {
         filteredItems = filteredItems.filter(item => item.badge === 'NEW');
     }
 
-    // 2. Calcular paginación sobre los items ya filtrados
     const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
     
-    // Si la página actual es mayor al total (por un filtro nuevo), resetear a 1
     if (currentPage > totalPages && totalPages > 0) currentPage = 1;
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -444,7 +425,6 @@ function renderCatalog() {
 
     grid.innerHTML = '';
 
-    // 3. Dibujar los 16 productos
     paginatedItems.forEach(item => {
         const isFavorited = getItemStatus(item.id);
         const salesCount = getSales(item.id);
@@ -480,11 +460,9 @@ function renderCatalog() {
         grid.appendChild(card);
     });
 
-    // 4. Dibujar los botones de página
     renderPaginationButtons(totalPages, paginationControls);
 }
 
-// Configurar los eventos de clic para el menú lateral
 document.getElementById('clear-cart').addEventListener('click', () => {
     cart = [];
     saveAndRenderCart();
@@ -504,25 +482,19 @@ window.addEventListener('load', () => {
     }
 });
 
-// --- MANEJO DE NAVEGACIÓN (SIDEBAR) ---
 document.querySelectorAll('.browse-list li').forEach(item => {
     item.addEventListener('click', function() {
         const nuevoTitulo = this.textContent.trim();
 
-        // 1. Quitar clase active de todos y ponerla en el seleccionado
         document.querySelectorAll('.browse-list li').forEach(el => el.classList.remove('active'));
         this.classList.add('active');
 
-        // 2. ACTUALIZAR TÍTULOS (Catálogo y Detalle si existe)
-        // Actualiza el del catálogo
         const contentHeader = document.querySelector('.content > .content-header h2');
         if (contentHeader) contentHeader.textContent = nuevoTitulo;
 
-        // Actualiza el del detalle del producto (la barra negra dinámica)
         const dynamicHeader = document.querySelector('#dynamic-detail-header h2');
         if (dynamicHeader) dynamicHeader.textContent = nuevoTitulo;
 
-        // 3. Actualizar descripción según la categoría
         const description = document.querySelector('.category-description');
         if (description) {
             if (nuevoTitulo === "Top favoritos") {
@@ -534,14 +506,11 @@ document.querySelectorAll('.browse-list li').forEach(item => {
             }
         }
 
-        // 4. Si el usuario hace clic en una categoría estando en el detalle, 
-        // lo ideal es regresarlo al catálogo para que vea los resultados.
         const detailView = document.getElementById('product-detail-view');
         if (detailView && detailView.style.display === 'block') {
             closeProductDetail();
         }
 
-        // 5. Actualizar filtro, resetear página y re-renderizar
         currentFilter = this.getAttribute('data-filter');
         currentPage = 1; 
         renderCatalog();

@@ -16,7 +16,7 @@ body {
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    min-height: 100vh;
 }
 
 .top-header {
@@ -42,16 +42,14 @@ body {
     gap: 0px;
 }
 
-/* Asegura que el detalle ocupe el ancho correcto cuando no hay sidebar */
 #product-detail-view {
     width: 1000px;
-    margin: 0 auto; /* Cambiamos el 20px auto por 0 auto */
+    margin: 0 auto;
     display: none;
     border: none;
     background: transparent;
 }
 
-/* Estilo para el botón de cerrar en la barra negra */
 .content-header h2 button:hover {
     filter: brightness(1.2);
 }
@@ -74,9 +72,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: flex-start;
-
-    /* AÑADE ESTO: */
-    flex: 1; /* Esto empuja al footer hacia abajo si hay poco contenido */
+    flex: 1;
 }
 
 .sidebar {
@@ -151,10 +147,10 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas iguales */
+    grid-template-columns: repeat(4, 1fr);
     padding: 15px;
     gap: 20px;
-    min-height: 850px; /* Altura mínima para que el diseño no salte al cambiar de página */
+    min-height: 850px;
     justify-items: center;
 }
 
@@ -167,11 +163,10 @@ body {
     margin-top: 10px;
 } */
 
-/* Contenedor de paginación (fuera de la tabla) */
 .pagination {
     margin-top: 10px;
     display: flex;
-    justify-content: flex-end; /* Lo mueve a la derecha */
+    justify-content: flex-end;
     width: 100%;
 }
 
@@ -180,7 +175,6 @@ body {
     font-size: 12px;
 }
 
-/* Estilo de los links azules */
 .nav-link {
     color: #0000EE;
     text-decoration: none;
@@ -192,7 +186,6 @@ body {
     text-decoration: underline;
 }
 
-/* Cuando no se puede clickear (primera o última página) */
 .nav-link.disabled {
     color: #808080;
     cursor: default;
@@ -203,16 +196,15 @@ body {
     padding: 10px 15px 0 15px;
     font-family: Verdana, sans-serif;
     font-size: 12px;
-    color: #333; /* Color de texto estándar */
-    line-height: 1.4; /* Espaciado entre líneas para mejor lectura */
+    color: #333;
+    line-height: 1.4;
     text-align: center;
 }
 
-/* Contenedor principal del texto */
 .category-info {
     padding: 20px 15px;
     margin-top: 20px;
-    position: relative; /* CRUCIAL para la línea */
+    position: relative;
     text-align: center;
 }
 
@@ -222,7 +214,7 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%; /* Esto hace que no llegue a los extremos */
+    width: 90%;
     height: 1px;
     background-color: #E5E5E5;
 }
@@ -243,7 +235,6 @@ body {
     display: inline-block;
 }
 
-/* Ajuste para el texto de resultados (Mostrando 1-16...) */
 .results-count {
     padding: 5px 15px 10px 15px;
     font-size: 11px;
@@ -261,33 +252,30 @@ body {
     border: 1px solid #A7A7A7;
     background: #f0f0f0;
     cursor: pointer;
-    transition: all 0.2s ease; /* Suaviza el cambio de tamaño */
+    transition: all 0.2s ease;
     font-family: Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Botones numéricos normales */
 .num-btn {
     width: 30px;
     height: 30px;
     font-size: 12px;
 }
 
-/* El botón activo (Más grande) */
 .num-btn.active {
     background: #4D4D4D;
     color: white;
-    width: 45px;   /* Aumentamos el tamaño */
-    height: 45px;  /* Aumentamos el tamaño */
-    font-size: 18px; /* Texto más grande */
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
     font-weight: bold;
     border-color: #000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Estilo para las flechas */
 .arrow {
     width: 30px;
     height: 30px;
@@ -378,8 +366,8 @@ body {
 }
 
 .browse-list li:hover {
-    text-decoration: underline; /* Opcional: añade un subrayado al pasar el mouse */
-    color: #0000EE; /* Cambia a azul para reforzar que es un link */
+    text-decoration: underline;
+    color: #0000EE;
 }
 
 .cart-list {
@@ -411,25 +399,24 @@ body {
     font-weight: bold;
 } */
 
-/* Botones del Carrito en el Sidebar */
 #cart-actions {
-    display: flex; /* Alinea los botones en fila */
+    display: flex;
     align-items: center;
 }
 
 #clear-cart {
-    width: 25px;       /* Lo hace cuadrado */
+    width: 25px;
     height: 25px;
     background: linear-gradient(to bottom, #CE0A0A 4px, #860000); 
     color: white;
     border: none;
     cursor: pointer;
-    flex-shrink: 0;    /* Evita que se deforme */
+    flex-shrink: 0;
     border-radius: 6px;
 }
 
 #pay-btn {
-    flex-grow: 1;      /* Hace que sea rectangular y ocupe el resto del espacio */
+    flex-grow: 1;
     height: 25px;
     background: linear-gradient(to bottom, #007bff 4px, #0056b3); 
     color: white;
@@ -439,7 +426,6 @@ body {
     border-radius: 6px;
 }
 
-/* Botón Verde de los Productos (con imagen) */
 .add-to-cart-btn {
     background: linear-gradient(to bottom, #7df37d, 4px, #088409); 
     width: 25px;
@@ -454,16 +440,15 @@ body {
 }
 
 .add-to-cart-btn img {
-    width: 20px; /* Ajusta el tamaño de tu imagen aquí */
+    width: 20px;
     height: 20px;
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(359deg) brightness(104%) contrast(102%);
 }
 
 #clear-cart:hover {
-    background-color: #860000; /* Color más oscuro al pasar el mouse */
+    background-color: #860000;
 }
 
-/* Cambiamos el cursor para que el usuario sepa que puede hacer clic en el nombre */
 .item-name {
     cursor: pointer;
 }
@@ -491,7 +476,7 @@ body {
 }
 
 .fav-btn.active {
-    color: #FFD700; /* Dorado para favorito activo */
+    color: #FFD700;
 }
 
 .fav-btn:active {
@@ -521,7 +506,7 @@ ul { list-style: none; padding: 0; }
 
 .footer-payments {
     width: 100%;
-    margin: 20px auto 0px auto; /* Centrado con margen pequeño abajo */
+    margin: 20px auto 0px auto;
     text-align: center;
     padding: 15px;
     background: linear-gradient(to bottom, #e5e5e5, 20px, #FFF);
@@ -532,7 +517,7 @@ ul { list-style: none; padding: 0; }
 .footer-payments img {
     max-width: 40px;
     height: 25px;
-    filter: grayscale(20%); /* Opcional: para un look más integrado */
+    filter: grayscale(20%);
     background-color: white;
     border: 1px solid #A7A7A7;
     border-radius: 5px;
